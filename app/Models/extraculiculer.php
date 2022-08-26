@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class extraculiculer extends Model
+class Extraculiculer extends Model
 {
     use HasFactory;
     public function student()

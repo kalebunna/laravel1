@@ -9,8 +9,8 @@ class Kelascontroller extends Controller
 {
     public function index()
     {
-        $data = Kelas::all();
-        $data = Kelas::with("student")->get();
+        // $data = Kelas::all();
+        $data = Kelas::with(["student", "kelasTeacher"])->get();
         return view('kelasview', ["data" => $data]);
     }
 }

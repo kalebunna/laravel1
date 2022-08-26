@@ -16,9 +16,8 @@
                 <th>nama</th>
                 <th>kelas</th>
                 <th>nama kelas</th>
-                <th>Exatrakulikuler</th>
-                <th>alamat</th>
-                <th>jenis_kelamin</th>
+                <th>Wali Kelas</th>
+                <th>action</th>
             </tr>
         </thead>
         <tbody>
@@ -28,15 +27,8 @@
                     <td>{{ $list->name }}</td>
                     <td>{{ $list->kelas_id }}</td>
                     <td>{{ $list->kelas->nama_kelas }}</td>
-                    <td>{{ $list->address }}</td>
-                    <td>
-                        @foreach ($list->extraculiler as $e)
-                            # {{ $e->name }}
-                            <br>
-                        @endforeach
-                        {{-- {{ $list->extraculiler }} --}}
-                    </td>
-                    <td>{{ $list->jenis_kelamin }}</td>
+                    <td>{{ $list->kelas->kelasTeacher->name }}</td>
+                    <td><a href="Student/{{$list->id}}" class="btn btn-primary badge badge-primary">Action</a></td>
                 </tr>
             @endforeach
         </tbody>

@@ -55,4 +55,12 @@ class Studentcontroller extends Controller
     //   return $value * (2.25);
     // }));
   }
+
+  public function show($id)
+  {
+    $data = Student::with(['Kelas.kelasTeacher', 'extraculiler'])->find($id);
+    return view('Studentshowview', [
+      "data" => $data
+    ]);
+  }
 }

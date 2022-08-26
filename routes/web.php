@@ -3,7 +3,9 @@
 use App\Http\Controllers\ExtraculiculerController;
 use App\Http\Controllers\Kelascontroller;
 use App\Http\Controllers\Studentcontroller;
+use App\Http\Controllers\TeacherController;
 use App\Models\extraculiculer;
+use App\Models\Teacher;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,3 +59,5 @@ Route::get("/about", function () {
 Route::get('/Student', [Studentcontroller::class, 'index']);
 Route::get('/Kelas', [Kelascontroller::class, 'index']);
 Route::get('/extrakulikuler', [ExtraculiculerController::class, 'index']);
+Route::get('/Teacher', [TeacherController::class, 'index']);
+Route::get('/Student/{id}', [Studentcontroller::class, 'index']);

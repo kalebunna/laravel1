@@ -8,6 +8,7 @@
                 <th>NO.</th>
                 <th>Nama</th>
                 <th>student</th>
+                <th>teacher</th>
             </tr>
         </thead <tbody>
         @foreach ($data as $list)
@@ -19,6 +20,9 @@
                         # {{ $siswa->name }}
                         <br>
                     @endforeach
+                </td>
+                <td>
+                    {{$list->kelasTeacher->name}}
                 </td>
             </tr>
         @endforeach
