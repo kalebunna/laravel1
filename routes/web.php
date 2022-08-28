@@ -57,7 +57,6 @@ Route::get("/about", function () {
     return view("about");
 });
 
-Route::get('/Student', [Studentcontroller::class, 'index']);
 Route::get('/Kelas', [Kelascontroller::class, 'index']);
 Route::get('/extrakulikuler', [ExtraculiculerController::class, 'index']);
 Route::get('/Teacher', [TeacherController::class, 'index']);
@@ -65,6 +64,10 @@ Route::get('/Student/{id}', [Studentcontroller::class, 'show']);
 Route::get('/Kelas/{id}', [Kelascontroller::class, 'show']);
 Route::get('/Extrakulikuler/{id}', [ExtraculiculerController::class, 'show']);
 Route::get('/Teacher/{id}', [TeacherController::class, 'show']);
+
+Route::get('/Student', [Studentcontroller::class, 'index']);
 Route::get('/Student-add', [Studentcontroller::class, 'create']);
-Route::get('/Student-edit', [Studentcontroller::class, 'edit']);
+Route::get('/Student-edit/{id}', [Studentcontroller::class, 'edit']);
 Route::post('/Student', [Studentcontroller::class, 'store']);
+Route::put('/Student/{id}', [Studentcontroller::class, 'update']);
+Route::get('/Student-delete/{id}', [Studentcontroller::class, 'destroy']);

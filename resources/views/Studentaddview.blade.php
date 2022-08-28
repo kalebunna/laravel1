@@ -1,7 +1,21 @@
 @extends('layout.templates')
 @section('title', 'Student')
 @section('content')
-<h1>ini adalah halaman Tambah Student</h1>
+<h1>ini adalah halaman Edit Student</h1>
+
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Danger!</strong> 
+            <ul>
+                @foreach ($errors->all() as $err)
+                    <li>{{$err}}</li>
+                @endforeach
+                <li></li>
+            </ul>
+        </div>
+    @endif
+
 <form action="/Student" method="POST">
     @csrf
     <div class="mb-3 mt-3">

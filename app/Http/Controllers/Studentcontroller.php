@@ -2,18 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentCreateRequest;
 use App\Models\Kelas;
 use App\Models\Student;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class Studentcontroller extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
+
+    $keyword = $request->keyword;
+    // dd($keyword);s
     // get data dengan relasi dengan lazy loading
     // $data = Student::all();
     // get data dengan relasi dengan cara eiger loading ini cara yang sangat disarankan
-    $data = Student::with(["kelas", "extraculiler"])->get();
+
+
+    $data = Student::with(["kelas", "extraculiler"])->where('name', 'Like', '%' . $keyword . '%')->orWhere('jenis_kelamin', 'Like', '%' . $keyword . '%')
+      ->orWhereHas('Kelas', function ($query) use ($keyword) {
+        $query->where('nama_kelas', 'LIKE', '%' . $keyword . '%');
+      })->paginate(15);
+    // $data = Student::with(["kelas", "extraculiler"])->get();
     return view('Studentview', ["data" => $data]);
 
 
@@ -76,8 +87,9 @@ class Studentcontroller extends Controller
     );
   }
 
-  public function store(Request $request)
+  public function store(StudentCreateRequest $request)
   {
+
 
     $student = new Student();
     // $student->name = $request->name;
@@ -88,17 +100,39 @@ class Studentcontroller extends Controller
     // $student->save();
 
     $student->create($request->all());
+    if ($student) {
+      session()->flash('status', "success");
+      session()->flash("message", "Ber Hasil Menambah Data Baru !");
+    }
     return redirect('/Student');
   }
 
-  public function edit()
+  public function edit(Request $request, $id)
   {
-    $data = Kelas::all();
+    $student = Student::with('Kelas')->findOrFail($id);
+    $kelas = Kelas::where('id', '!=', $student->kelas_id)->get();
     return view(
-      'Studentaddview',
+      'Studenteditview',
       [
-        "data" => $data
+        "data" => $student,
+        "kelas" => $kelas,
       ]
     );
+  }
+
+  public function update(Request $request, $id)
+  {
+    // dd($request);
+    $student = Student::findOrFail($id);
+    // dd($student);
+    $student->update($request->all());
+    return redirect('/Student');
+    // dd($request->all());
+  }
+
+  public function destroy($id)
+  {
+    $student = Student::findOrFail($id)->delete();
+    return redirect('/Student');
   }
 }
