@@ -13,4 +13,13 @@ class Kelascontroller extends Controller
         $data = Kelas::with(["student", "kelasTeacher"])->get();
         return view('kelasview', ["data" => $data]);
     }
+
+    public function show($id)
+    {
+        $data = Kelas::with(['kelasTeacher', 'Student'])->findOrFail($id);
+        return view(
+            'Kelasshowview',
+            ["data" => $data]
+        );
+    }
 }

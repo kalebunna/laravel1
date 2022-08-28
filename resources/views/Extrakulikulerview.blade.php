@@ -8,6 +8,7 @@
                 <th>NO.</th>
                 <th>Nama</th>
                 <th>Student</th>
+                <th>action</th>
             </tr>
         </thead <tbody>
         @foreach ($data as $list)
@@ -19,6 +20,9 @@
                         {{ $st->name }}
                         <br>
                     @endforeach
+                </td>
+                <td>
+                    <a href="Extrakulikuler/{{$list->id}}" class="btn btn-danger btn-sm">Detail</a>
                 </td>
             </tr>
         @endforeach

@@ -28,6 +28,8 @@ class TeacherController extends Controller
         //
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -45,9 +47,15 @@ class TeacherController extends Controller
      * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function show(Teacher $teacher)
+    public function show($id)
     {
-        //
+        $data = Teacher::with('class.Student')->findOrFail($id);
+        return (view(
+            "Teachershowview",
+            [
+                "data" => $data
+            ]
+        ));
     }
 
     /**

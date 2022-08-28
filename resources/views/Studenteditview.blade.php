@@ -22,8 +22,8 @@
 
 <h1>Extra Kulikuler</h1>
 @foreach ($data->extraculiler as $data)
-    <li>
-        <ol>{{$data->name}}</ol>
-    </li>
+<li>
+    <ol>{{$data->name}}</ol>
+</li>
 @endforeach
 @endsection

@@ -46,9 +46,12 @@ class ExtraculiculerController extends Controller
      * @param  \App\Models\extraculiculer  $extraculiculer
      * @return \Illuminate\Http\Response
      */
-    public function show(extraculiculer $extraculiculer)
+    public function show($id)
     {
-        //
+        $data = extraculiculer::with('Student')->findOrFail($id);
+        return (view("Extraculicularshowview", [
+            "data" => $data
+        ]));
     }
 
     /**

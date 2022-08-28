@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -58,9 +59,46 @@ class Studentcontroller extends Controller
 
   public function show($id)
   {
-    $data = Student::with(['Kelas.kelasTeacher', 'extraculiler'])->find($id);
+    $data = Student::with(['Kelas.kelasTeacher', 'extraculiler'])->findOrFail($id);
     return view('Studentshowview', [
       "data" => $data
     ]);
+  }
+
+  public function create()
+  {
+    $data = Kelas::all();
+    return view(
+      'Studentaddview',
+      [
+        "data" => $data
+      ]
+    );
+  }
+
+  public function store(Request $request)
+  {
+
+    $student = new Student();
+    // $student->name = $request->name;
+    // $student->nis = $request->nis;
+    // $student->jenis_kelamin = $request->jenis_kelamin;
+    // $student->kelas_id = $request->kelas_id;
+    // $student->address = $request->address;
+    // $student->save();
+
+    $student->create($request->all());
+    return redirect('/Student');
+  }
+
+  public function edit()
+  {
+    $data = Kelas::all();
+    return view(
+      'Studentaddview',
+      [
+        "data" => $data
+      ]
+    );
   }
 }

@@ -9,6 +9,7 @@
                 <th>Nama</th>
                 <th>student</th>
                 <th>teacher</th>
+                <th>Action</th>
             </tr>
         </thead <tbody>
         @foreach ($data as $list)
@@ -23,6 +24,9 @@
                 </td>
                 <td>
                     {{$list->kelasTeacher->name}}
+                </td>
+                <td>
+                    <a href="Kelas/{{$list->id}}" class="btn btn-danger btn-sm">Detail</a>
                 </td>
             </tr>
         @endforeach

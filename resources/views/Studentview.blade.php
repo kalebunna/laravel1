@@ -2,6 +2,7 @@
 @section('title', 'Student')
 @section('content')
     <h1>ini adalah halaman Student</h1>
+    <a href="Student-add" class="btn btn-primary"> TAMBAH DATA</a>
     {{-- <ol>
         @foreach ($data as $list)
             <li>
