@@ -16,7 +16,7 @@
         </div>
     @endif
 
-<form action="/Student" method="POST">
+<form action="/Student" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="mb-3 mt-3">
         <label for="email" class="form-label">Nama</label>
@@ -34,6 +34,7 @@
         <label for="email" class="form-label">NIS</label>
         <input type="Number" class="form-control" id="nis" placeholder="Enter email" name="nis">
     </div>
+    
 
     
     <div class="mb-3 mt-3">
@@ -45,6 +46,10 @@
         </select>
     </div>
 
+    <div class="mb-3 mt-3">
+        <label for="email" class="form-label">PHOTO</label>
+        <input type="file" class="form-control" id="image" placeholder="Enter email" name="image">
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 @endsection

@@ -15,6 +15,7 @@ class Student extends Model
         'nis',
         'jenis_kelamin',
         'kelas_id',
+        'image'
     ];
 
     /**

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ExtraculiculerController;
 use App\Http\Controllers\Kelascontroller;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Studentcontroller;
 use App\Http\Controllers\TeacherController;
 use App\Models\extraculiculer;
@@ -71,3 +73,10 @@ Route::get('/Student-edit/{id}', [Studentcontroller::class, 'edit']);
 Route::post('/Student', [Studentcontroller::class, 'store']);
 Route::put('/Student/{id}', [Studentcontroller::class, 'update']);
 Route::get('/Student-delete/{id}', [Studentcontroller::class, 'destroy']);
+
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/Login', [LoginController::class, 'authenticate']);
+
+
+Route::get('/Register', [RegisterController::class, 'index']);
+Route::post('/Register', [RegisterController::class, 'store']);

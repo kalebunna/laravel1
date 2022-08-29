@@ -90,8 +90,19 @@ class Studentcontroller extends Controller
   public function store(StudentCreateRequest $request)
   {
 
-
-    $student = new Student();
+    if ($request->file('image')) {
+      $filename = $request->file('image')->store('image');
+      $request['image'] = $filename;
+      // $student = Student::create($request->all());
+      dd($filename);
+      //   if ($student) {
+      //     session()->flash('status', "success");
+      //     session()->flash("message", "Ber Hasil Menambah Data Baru !");
+      //   }
+      //   return redirect('/Student');
+      // } else {
+      //   return redirect('/Student');
+    }
     // $student->name = $request->name;
     // $student->nis = $request->nis;
     // $student->jenis_kelamin = $request->jenis_kelamin;
@@ -99,12 +110,8 @@ class Studentcontroller extends Controller
     // $student->address = $request->address;
     // $student->save();
 
-    $student->create($request->all());
-    if ($student) {
-      session()->flash('status', "success");
-      session()->flash("message", "Ber Hasil Menambah Data Baru !");
-    }
-    return redirect('/Student');
+    // dd($request->all());
+
   }
 
   public function edit(Request $request, $id)

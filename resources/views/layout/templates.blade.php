@@ -40,6 +40,11 @@
                         <a class="nav-link" href="/Teacher">extrakulikuler</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="/login" class="nav-link btn btn-danger">Login</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
