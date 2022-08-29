@@ -34,43 +34,59 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
                         <h2 class="fw-bold mb-5">Sign up now</h2>
-                        <form method="post" action="/Register">
-                            @csrf
-                            <!-- 2 column grid layout with text inputs for the first and last names -->
-
-                            <!-- Email input -->
-                            <div class="form-outline mb-4">
-                                <input type="text" id="form3Example3" class="form-control" id="name"
-                                    name="name" />
-                                <label class="form-label" for="form3Example3">Name</label>
+                        @if ($errors->any())
+                            <div class="alert alert-danger alert-dismissible fade show">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                <strong>Danger!</strong>
+                                <ul>
+                                    @foreach ($errors->all() as $err)
+                                        <li>{{ $err }}</li>
+                                    @endforeach
+                                    <li></li>
+                                </ul>
                             </div>
-
-                            <div class="form-outline mb-4">
-                                <input type="text" id="form3Example3" class="form-control" id="username"
-                                    name="username" />
-                                <label class="form-label" for="form3Example3">Username</label>
-                            </div>
-                            <div class="form-outline mb-4">
-                                <input type="email" id="form3Example3" class="form-control" id="email"
-                                    name="email" />
-                                <label class="form-label" for="form3Example3">Email address</label>
-                            </div>
-
-                            <!-- Password input -->
-                            <div class="form-outline mb-4">
-                                <input type="password" id="form3Example4" class="form-control" id="password"
-                                    name="password" />
-                                <label class="form-label" for="form3Example4">Password</label>
-                            </div>
-
-                            <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary btn-block mb-4">
-                                Register Now
-                            </button>
-                        </form>
+                        @endif
                     </div>
                 </div>
+                <form method="post" action="/Register">
+                    @csrf
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="form3Example3"
+                            class="form-control @error('name') is-invalid @enderror" id="name" name="name" />
+                        @error('name')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        <label class="form-label" for="form3Example3">Name</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input type="text" id="form3Example3" class="form-control" id="username" name="username" />
+                        <label class="form-label" for="form3Example3">Username</label>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <input type="email" id="form3Example3" class="form-control" id="email" name="email" />
+                        <label class="form-label" for="form3Example3">Email address</label>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="form3Example4" class="form-control" id="password" name="password" />
+                        <label class="form-label" for="form3Example4">Password</label>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4">
+                        Register Now
+                    </button>
+                </form>
             </div>
+        </div>
+        </div>
         </div>
     </section>
     <!-- Section: Design Block -->
