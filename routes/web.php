@@ -23,10 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home', [
-        "nama" => "syauqan wafiqi",
-        "role" => "admin"
-    ]);
+    return view('home');
 });
 
 Route::get('/tentang', function () {
@@ -67,15 +64,16 @@ Route::get('/Kelas/{id}', [Kelascontroller::class, 'show']);
 Route::get('/Extrakulikuler/{id}', [ExtraculiculerController::class, 'show']);
 Route::get('/Teacher/{id}', [TeacherController::class, 'show']);
 
-Route::get('/Student', [Studentcontroller::class, 'index']);
+Route::get('/Student', [Studentcontroller::class, 'index'])->middleware(['auth', 'must-Admin']);
 Route::get('/Student-add', [Studentcontroller::class, 'create']);
 Route::get('/Student-edit/{id}', [Studentcontroller::class, 'edit']);
 Route::post('/Student', [Studentcontroller::class, 'store']);
 Route::put('/Student/{id}', [Studentcontroller::class, 'update']);
 Route::get('/Student-delete/{id}', [Studentcontroller::class, 'destroy']);
 
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/Login', [LoginController::class, 'authenticate']);
+Route::get('/Logout', [LoginController::class, 'logout'])->middleware('auth');
 
 
 Route::get('/Register', [RegisterController::class, 'index']);

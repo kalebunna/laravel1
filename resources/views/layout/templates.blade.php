@@ -41,9 +41,15 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="/login" class="nav-link btn btn-danger">Login</a>
-                    </li>
+                    @auth
+                        <li class="nav-item">
+                            <a href="/Logout" class="nav-link btn btn-danger">LOGOUT</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a href="/login" class="nav-link btn btn-danger">lOGIN</a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
         </div>

@@ -19,13 +19,21 @@ class LoginController extends Controller
             "password" => 'required'
         ]);
 
-        dd($credentials);
-
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            redirect()->intended('/Kelas');
+            return redirect()->intended('/Kelas');
         }
 
         return back()->with('err', 'Login Error');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
